@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { setSession } from '@/lib/auth';
+import { Fingerprint, ArrowRight } from 'lucide-react';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -32,10 +33,10 @@ export default function LoginPage() {
         {/* Header Icon */}
         <div className="flex flex-col items-center mb-6 text-center">
           <div className="w-14 h-14 rounded-full bg-cyan-950/60 border border-cyan-400/40 flex items-center justify-center text-cyan-400 mb-3 shadow-[0_0_20px_rgba(34,211,238,0.3)]">
-            <span className="material-symbols-outlined text-3xl">fingerprint</span>
+            <Fingerprint className="w-8 h-8" />
           </div>
           <h1 className="font-sora text-2xl font-bold tracking-tight text-white mb-1">
-            5 CENTS <span className="text-cyan-400 text-xs font-mono tracking-widest block font-normal">APEX INTELLIGENCE</span>
+            5 CENTS <span className="text-cyan-400 text-xs font-mono tracking-widest block font-normal uppercase">Apex India Intelligence</span>
           </h1>
           <p className="text-xs text-slate-400 font-mono tracking-wider">SECURE AUTHENTICATION TERMINAL</p>
         </div>
@@ -74,7 +75,7 @@ export default function LoginPage() {
             className="w-full mt-2 bg-gradient-to-r from-cyan-500 to-teal-400 hover:from-cyan-400 hover:to-teal-300 text-slate-950 font-sora font-semibold py-3 px-6 rounded-lg transition-all duration-200 shadow-[0_0_20px_rgba(34,211,238,0.4)] active:scale-[0.99] flex items-center justify-center gap-2"
           >
             <span>AUTHENTICATE TERMINAL</span>
-            <span className="material-symbols-outlined text-sm">arrow_forward</span>
+            <ArrowRight className="w-4 h-4" />
           </button>
         </form>
 

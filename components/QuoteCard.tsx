@@ -2,6 +2,7 @@
 
 import { StockQuote } from '@/lib/stocks';
 import { useMemo } from 'react';
+import { ArrowUpRight, ArrowDownRight, Bot } from 'lucide-react';
 
 interface QuoteCardProps {
   quote: StockQuote;
@@ -18,10 +19,6 @@ function pseudoNoise(seed: number, index: number): number {
   const x = Math.sin(seed * 9999 + index * 12.9898) * 43758.5453;
   return (x - Math.floor(x)) - 0.48;
 }
-
-import TrendingUpIcon from '@mui/icons-material/TrendingUp';
-import TrendingDownIcon from '@mui/icons-material/TrendingDown';
-import SmartToyIcon from '@mui/icons-material/SmartToy';
 
 export default function QuoteCard({
   quote,
@@ -90,27 +87,32 @@ export default function QuoteCard({
           <div>
             <div className="flex items-center gap-2 mb-1">
               <h2 className="font-sora text-2xl font-bold text-white tracking-tight">{quote.symbol}</h2>
-              <span
-                className={`font-mono text-xs px-2 py-0.5 rounded flex items-center gap-1 font-semibold ${
-                  signalType === 'BULLISH'
-                    ? 'bg-cyan-500/10 border border-cyan-400 text-cyan-400'
-                    : 'bg-red-500/10 border border-red-400 text-red-400 pulse-critical'
-                }`}
-              >
-                {signalType === 'BULLISH' ? (
-                  <TrendingUpIcon className="text-sm" />
-                ) : (
-                  <TrendingDownIcon className="text-sm" />
-                )}
-                {signalType}
-              </span>
+              <div className="flex items-center gap-1">
+                <span
+                  className={`font-mono text-xs px-2 py-0.5 rounded flex items-center gap-1 font-semibold ${
+                    signalType === 'BULLISH'
+                      ? 'bg-cyan-500/10 border border-cyan-400 text-cyan-400'
+                      : 'bg-red-500/10 border border-red-400 text-red-400 pulse-critical'
+                  }`}
+                >
+                  {signalType === 'BULLISH' ? (
+                    <ArrowUpRight className="w-4 h-4" />
+                  ) : (
+                    <ArrowDownRight className="w-4 h-4" />
+                  )}
+                  {signalType}
+                </span>
+                <span className="font-mono text-[9px] px-1.5 py-0.5 rounded bg-slate-800 border border-slate-700 text-slate-300 font-bold uppercase">
+                  AAA
+                </span>
+              </div>
             </div>
             <p className="text-xs text-slate-400 font-sans">{companyName}</p>
           </div>
 
           <div className="text-right">
             <div className="font-mono text-xl font-bold text-white">
-              ₹{quote.currentPrice.toLocaleString('en-IN', { minimumFractionDigits: 2 })}
+              ₹{quote.currentPrice.toFixed(2)}
             </div>
             <div
               className={`font-mono text-xs font-semibold flex items-center justify-end gap-0.5 ${
@@ -139,11 +141,11 @@ export default function QuoteCard({
         {/* Entry target and Horizon */}
         <div className="grid grid-cols-2 gap-2 mb-4">
           <div className="bg-[#151c29] p-2.5 rounded-lg border border-slate-800 flex flex-col justify-between">
-            <span className="font-mono text-[10px] text-slate-400 tracking-wider block mb-0.5 uppercase">Entry Trgt</span>
-            <span className="font-mono text-sm font-semibold text-white">₹{targetVal.toLocaleString('en-IN', { minimumFractionDigits: 2 })}</span>
+            <span className="font-mono text-[10px] text-slate-400 tracking-wider block mb-0.5">ENTRY TRGT</span>
+            <span className="font-mono text-sm font-semibold text-white">₹{targetVal.toFixed(2)}</span>
           </div>
           <div className="bg-[#151c29] p-2.5 rounded-lg border border-slate-800 flex flex-col justify-between">
-            <span className="font-mono text-[10px] text-slate-400 tracking-wider block mb-0.5 uppercase">Horizon</span>
+            <span className="font-mono text-[10px] text-slate-400 tracking-wider block mb-0.5">HORIZON</span>
             <span className="font-mono text-sm font-semibold text-white">{horizon}</span>
           </div>
         </div>
@@ -151,7 +153,7 @@ export default function QuoteCard({
         {/* Footer Agent info */}
         <div className="border-t border-slate-800/80 pt-3 flex justify-between items-center text-xs text-slate-400 font-mono">
           <div className="flex items-center gap-1.5 text-slate-300">
-            <SmartToyIcon className="text-sm text-cyan-400" />
+            <Bot className="w-3.5 h-3.5 text-cyan-400" />
             <span className="text-[11px] tracking-wider">{agentName}</span>
           </div>
           <div className="text-[11px] text-cyan-400 font-semibold">{confidence}% CONFIDENCE</div>

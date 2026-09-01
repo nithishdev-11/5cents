@@ -33,7 +33,7 @@ export interface SentimentAgentContract {
 
 export interface FundamentalRagContract {
   agentId: 'FUNDAMENTAL_RAG_V9';
-  agentRole: 'SEC Filing & Earnings RAG Grounding Specialist';
+  agentRole: 'SEBI Filing & Earnings RAG Grounding Specialist';
   score: number; // -100 to +100
   auditStatus: 'VERIFIED_SOLID' | 'MODERATE_RISK' | 'HIGH_DEBT_WARNING';
   groundedSnippets: RagDocumentSnippet[];
@@ -86,7 +86,7 @@ export function executeQuantAgent(signal: ClassifiedSignal, price: number): Quan
       supportLevel: Number((price * 0.95).toFixed(2)),
       resistanceLevel: Number((price * 1.08).toFixed(2)),
     },
-    reasoning: `Quant Engine detected technical breakout. RSI is at ${(50 + (score * 0.3)).toFixed(1)} with key resistance at $${(price * 1.08).toFixed(2)}. Volume anomaly confirms momentum.`,
+    reasoning: `Quant Engine detected technical breakout. RSI is at ${(50 + (score * 0.3)).toFixed(1)} with key resistance at ₹${(price * 1.08).toFixed(2)}. Volume anomaly confirms momentum.`,
     executionLatencyMs: latency,
   };
 }
@@ -104,8 +104,8 @@ export function executeSentimentAgent(signal: ClassifiedSignal): SentimentAgentC
     score,
     sentimentIndex: score > 30 ? '+0.74 Strong Optimism' : score < -30 ? '-0.62 Negative Pressure' : '+0.10 Neutral',
     topHeadlinesAnalyzed: [
-      `${signal.symbol} product demand surge noted in enterprise cloud survey.`,
-      `Wall Street price target raised on margin expansion outlook.`,
+      `${signal.symbol} product demand surge noted in NASSCOM industry outlook.`,
+      `Dalal Street price target raised on margin expansion outlook.`,
     ],
     reasoning: `NLP analysis of news stream indicates positive sentiment bias (+0.74). Major headlines highlight enterprise expansion and institutional inflows.`,
     executionLatencyMs: latency,
@@ -121,12 +121,12 @@ export function executeFundamentalRagAgent(symbol: string, forceMissingFiling: b
   if (forceMissingFiling || snippets.length === 0) {
     return {
       agentId: 'FUNDAMENTAL_RAG_V9',
-      agentRole: 'SEC Filing & Earnings RAG Grounding Specialist',
+      agentRole: 'SEBI Filing & Earnings RAG Grounding Specialist',
       score: 10,
       auditStatus: 'MODERATE_RISK',
       groundedSnippets: [],
-      primaryCitation: '[Citation Warning: SEC 10-K Unavailable — Fallback Mode Active]',
-      reasoning: `DEGRADED SCENARIO: Primary SEC 10-K filing unretrievable. Fundamental agent downgrades confidence to 10/100 and flags missing disclosure.`,
+      primaryCitation: '[Citation Warning: SEBI Filing Unavailable — Fallback Mode Active]',
+      reasoning: `DEGRADED SCENARIO: Primary SEBI Annual Report unretrievable. Fundamental agent downgrades confidence to 10/100 and flags missing disclosure.`,
       executionLatencyMs: latency,
     };
   }
@@ -134,7 +134,7 @@ export function executeFundamentalRagAgent(symbol: string, forceMissingFiling: b
   const primary = snippets[0];
   return {
     agentId: 'FUNDAMENTAL_RAG_V9',
-    agentRole: 'SEC Filing & Earnings RAG Grounding Specialist',
+    agentRole: 'SEBI Filing & Earnings RAG Grounding Specialist',
     score: 82,
     auditStatus: 'VERIFIED_SOLID',
     groundedSnippets: snippets,
@@ -202,7 +202,7 @@ export function executeSynthesisLayer(
 2. USER PROFILE GROUNDING: Applied [${userProfile.name}] weights (Quant: ${(weights.quantMomentum*100).toFixed(0)}%, Sentiment: ${(weights.sentimentNlp*100).toFixed(0)}%, RAG: ${(weights.fundamentalRag*100).toFixed(0)}%). Weighted score = ${weightedScore}.
 3. CITATION GROUNDING: ${fundamental.primaryCitation}
 4. CONFLICT ANALYSIS: ${conflictDetected ? 'DIVERGENCE DETECTED between Quant and Sentiment. Auto-engaging collar hedge.' : 'Agent signals aligned.'}
-5. ACTION CONTRACT: ${finalDecision} with ${recommendedPositionSizePct}% capital allocation and $${stopLossPrice} stop-loss constraint.
+5. ACTION CONTRACT: ${finalDecision} with ${recommendedPositionSizePct}% capital allocation and ₹${stopLossPrice} stop-loss constraint.
   `.trim();
 
   return {

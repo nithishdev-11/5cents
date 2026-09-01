@@ -23,7 +23,7 @@ export const USER_PROFILES: Record<UserProfileType, UserProfile> = {
   CONSERVATIVE: {
     id: 'CONSERVATIVE',
     name: 'Capital Preservation / Conservative',
-    description: 'Prioritizes downside protection and SEC filing balance sheet strength. Avoids chasing high-volatility spikes.',
+    description: 'Prioritizes downside protection and SEBI filing balance sheet strength. Avoids chasing high-volatility spikes.',
     riskTolerance: 0.25,
     maxDrawdownTarget: '5.0%',
     agentWeights: {
@@ -39,7 +39,7 @@ export const USER_PROFILES: Record<UserProfileType, UserProfile> = {
   BALANCED: {
     id: 'BALANCED',
     name: 'Balanced Growth Operative',
-    description: 'Equal weighting across technical momentum, news sentiment, and SEC fundamental RAG citations.',
+    description: 'Equal weighting across technical momentum, news sentiment, and SEBI fundamental RAG citations.',
     riskTolerance: 0.50,
     maxDrawdownTarget: '12.0%',
     agentWeights: {
@@ -71,7 +71,7 @@ export const USER_PROFILES: Record<UserProfileType, UserProfile> = {
   INSTITUTIONAL_HEDGER: {
     id: 'INSTITUTIONAL_HEDGER',
     name: 'Institutional Delta-Neutral Hedger',
-    description: 'Mandates tail-risk hedging options collars, options gamma analysis, and zero-trust SEC filing audit.',
+    description: 'Mandates tail-risk hedging options collars, options gamma analysis, and zero-trust SEBI filing audit.',
     riskTolerance: 0.35,
     maxDrawdownTarget: '4.0%',
     agentWeights: {

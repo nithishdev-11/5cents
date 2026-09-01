@@ -16,13 +16,12 @@ import DegradedDataSimulator from '@/components/DegradedDataSimulator';
 import PerformanceLogWidget from '@/components/PerformanceLogWidget';
 import ArchitectureSummaryView from '@/components/ArchitectureSummaryView';
 import { getQuote, StockQuote } from '@/lib/stocks';
+import { Headphones, Sliders, Target, Zap } from 'lucide-react';
 
 const WATCHLIST = [
-  { symbol: 'RELIANCE.NS', name: 'Reliance Industries', confidence: 92.4, target: 3050.00, horizon: '3-5 Days', agent: 'AGENT: OMEGA-7', signal: 'BULLISH' as const },
-  { symbol: 'TCS.NS', name: 'Tata Consultancy Services', confidence: 85.5, target: 4200.20, horizon: 'Intraday', agent: 'AGENT: VORTEX-3', signal: 'BULLISH' as const },
-  { symbol: 'HDFCBANK.NS', name: 'HDFC Bank Ltd', confidence: 78.8, target: 1650.00, horizon: '1-2 Wks', agent: 'AGENT: QUANT-9', signal: 'BEARISH' as const },
-  { symbol: 'INFY.NS', name: 'Infosys Limited', confidence: 81.2, target: 1580.00, horizon: 'Short Term', agent: 'AGENT: OMEGA-7', signal: 'BULLISH' as const },
-  { symbol: 'ICICIBANK.NS', name: 'ICICI Bank Ltd', confidence: 89.4, target: 1150.00, horizon: 'Mid Term', agent: 'AGENT: VORTEX-3', signal: 'BULLISH' as const },
+  { symbol: 'RELIANCE.NS', name: 'Reliance Industries', confidence: 94.2, target: 3050.50, horizon: '3-5 Days', agent: 'AGENT: OMEGA-7', signal: 'BULLISH' as const },
+  { symbol: 'TCS.NS', name: 'Tata Consultancy Services', confidence: 88.5, target: 4200.20, horizon: 'Intraday', agent: 'AGENT: VORTEX-3', signal: 'BEARISH' as const },
+  { symbol: 'HDFCBANK.NS', name: 'HDFC Bank Ltd', confidence: 76.8, target: 1650.00, horizon: '1-2 Wks', agent: 'AGENT: QUANT-9', signal: 'BULLISH' as const },
 ];
 
 export default function DashboardPage() {
@@ -85,11 +84,11 @@ export default function DashboardPage() {
               <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-2 border-b border-cyan-400/20 pb-4">
                 <div>
                   <h1 className="font-sora text-3xl font-extrabold text-white tracking-tight uppercase">
-                    HERO COMMAND <span className="text-cyan-400 text-sm font-mono tracking-widest font-normal">APEX DASHBOARD</span>
+                    DALAL STREET SENSE <span className="text-cyan-400 text-sm font-mono tracking-widest font-normal">APEX INDIA</span>
                   </h1>
                   <p className="font-sans text-xs text-slate-400 mt-1 flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
-                    Live Signal Stream Active {lastSyncTime && `• Synced ${lastSyncTime}`}
+                    NSE/BSE Signal Stream Active {lastSyncTime && `• Synced ${lastSyncTime}`}
                   </p>
                 </div>
               </div>
@@ -108,7 +107,7 @@ export default function DashboardPage() {
                   <div className="glass-panel-accent rounded-xl p-5">
                     <div className="flex justify-between items-center mb-4 pb-2 border-b border-cyan-400/20">
                       <h2 className="font-sora text-sm font-bold text-white flex items-center gap-2 uppercase tracking-wide">
-                        <span className="material-symbols-outlined text-cyan-400">support_agent</span>
+                        <Headphones className="w-4 h-4 text-cyan-400" />
                         Agent Swarm
                       </h2>
                       <span className="font-mono text-[10px] text-slate-400">3 ACTIVE</span>
@@ -119,7 +118,7 @@ export default function DashboardPage() {
                       <div className="flex items-center justify-between p-3 rounded-lg bg-[#151c29]/70 border border-slate-800">
                         <div className="flex items-center gap-3">
                           <div className="w-9 h-9 rounded bg-cyan-950/60 border border-cyan-400/30 flex items-center justify-center text-cyan-400">
-                            <span className="material-symbols-outlined text-lg">tune</span>
+                            <Sliders className="w-5 h-5" />
                           </div>
                           <div>
                             <div className="font-mono text-sm font-bold text-white">Peter_PRM</div>
@@ -136,7 +135,7 @@ export default function DashboardPage() {
                       <div className="flex items-center justify-between p-3 rounded-lg bg-[#151c29]/70 border border-slate-800">
                         <div className="flex items-center gap-3">
                           <div className="w-9 h-9 rounded bg-cyan-950/60 border border-cyan-400/30 flex items-center justify-center text-cyan-400">
-                            <span className="material-symbols-outlined text-lg">blur_on</span>
+                            <Target className="w-5 h-5" />
                           </div>
                           <div>
                             <div className="font-mono text-sm font-bold text-white">Gwen_GHT</div>
@@ -153,7 +152,7 @@ export default function DashboardPage() {
                       <div className="flex items-center justify-between p-3 rounded-lg bg-red-950/20 border border-red-500/30">
                         <div className="flex items-center gap-3">
                           <div className="w-9 h-9 rounded bg-red-950/60 border border-red-500/40 flex items-center justify-center text-red-400">
-                            <span className="material-symbols-outlined text-lg">bolt</span>
+                            <Zap className="w-5 h-5" />
                           </div>
                           <div>
                             <div className="font-mono text-sm font-bold text-red-400">Miles_VOL</div>
@@ -176,11 +175,11 @@ export default function DashboardPage() {
                     <div className="space-y-3 font-mono text-xs">
                       <div className="flex justify-between items-center">
                         <span className="text-slate-400">NET LIQUIDITY</span>
-                        <span className="text-cyan-400 font-bold text-sm">₹35.2Cr</span>
+                        <span className="text-cyan-400 font-bold text-sm">₹4.2Cr</span>
                       </div>
                       <div className="flex justify-between items-center">
                         <span className="text-slate-400">24H VOL</span>
-                        <span className="text-cyan-400 font-bold text-sm">₹128.7Cr</span>
+                        <span className="text-cyan-400 font-bold text-sm">₹18.7Cr</span>
                       </div>
                       <div className="flex justify-between items-center pt-2 border-t border-slate-800">
                         <span className="text-slate-400">RISK EXPOSURE</span>
@@ -205,18 +204,18 @@ export default function DashboardPage() {
             </div>
           )}
 
-          {/* TAB 2: SIGNALS (Market Sense - Indian stock cards) */}
+          {/* TAB 2: SIGNALS (Market Sense - NVDA, TSLA, AAPL cards matching Image 1.png) */}
           {activeTab === 'signals' && (
             <div className="space-y-6 animate-fadeIn">
               <UserProfileSelector />
               <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-cyan-400/20 pb-4">
                 <div>
                   <h1 className="font-sora text-3xl font-extrabold text-white tracking-tight uppercase">
-                    DALAL STREET SENSE
+                    MARKET SENSE
                   </h1>
                   <p className="font-sans text-xs text-slate-400 mt-1 flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
-                    NSE/BSE Signal Stream Active
+                    Live Signal Stream Active
                   </p>
                 </div>
 

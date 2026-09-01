@@ -71,9 +71,7 @@ export async function getQuote(symbol: string): Promise<StockQuote> {
   const defaultPrices: Record<string, number> = { 
     'RELIANCE.NS': 2985.40, 
     'TCS.NS': 4120.15, 
-    'HDFCBANK.NS': 1612.00, 
-    'INFY.NS': 1540.50, 
-    'ICICIBANK.NS': 1120.30 
+    'HDFCBANK.NS': 1612.00 
   };
   const basePrice = defaultPrices[sym] || 1500.00;
   return {

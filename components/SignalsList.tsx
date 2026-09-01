@@ -2,7 +2,7 @@
 
 import { StockQuote } from '@/lib/stocks';
 import { evaluateThreeDimensions } from '@/lib/signalClassifier';
-import StackedLineChartIcon from '@mui/icons-material/StackedLineChart';
+import { BarChart3 } from 'lucide-react';
 
 interface SignalsListProps {
   quotes?: StockQuote[];
@@ -22,7 +22,7 @@ export default function SignalsList({ quotes = [] }: SignalsListProps) {
       <div className="flex justify-between items-end border-b border-cyan-400/20 pb-3">
         <div>
           <h2 className="font-sora text-base font-bold text-white flex items-center gap-2 uppercase tracking-wide">
-            <StackedLineChartIcon className="text-cyan-400" />
+            <BarChart3 className="w-5 h-5 text-cyan-400" />
             3-Dimension Signal Classification Engine
           </h2>
           <p className="font-sans text-xs text-slate-400 mt-0.5">
@@ -43,7 +43,10 @@ export default function SignalsList({ quotes = [] }: SignalsListProps) {
             <div className="flex justify-between items-start border-b border-slate-800 pb-2">
               <div>
                 <span className="font-mono text-[10px] text-slate-400 tracking-widest block">ASSET SIGNAL</span>
-                <span className="font-mono text-xl font-extrabold text-white">{sig.symbol}</span>
+                <div className="flex items-center gap-2">
+                  <span className="font-mono text-xl font-extrabold text-white">{sig.symbol}</span>
+                  <span className="font-mono text-[9px] px-1 py-0.5 rounded bg-slate-800 text-slate-400 border border-slate-700">AAA</span>
+                </div>
               </div>
               <span className="px-2.5 py-1 rounded text-[10px] font-mono font-bold bg-cyan-950 text-cyan-300 border border-cyan-400/30">
                 {sig.classificationLabel}

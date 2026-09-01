@@ -3,57 +3,57 @@
 export interface RagDocumentSnippet {
   id: string;
   symbol: string;
-  documentTitle: string; // e.g. "NVIDIA Corp SEC Form 10-K (Annual Report)"
-  section: string; // e.g. "Item 7: Management's Discussion and Analysis (MD&A)"
+  documentTitle: string; // e.g. "Reliance Industries FY26 Annual Report"
+  section: string; // e.g. "Management Discussion & Analysis"
   pageOrParagraph: string; // e.g. "Page 42, Paragraph 3"
   publicationDate: string;
   snippetText: string;
   relevanceScore: number; // 0 to 100
-  citationLabel: string; // e.g. "[Source: NVDA 10-K Item 7, p. 42]"
+  citationLabel: string; // e.g. "[Source: RIL FY26 AR, p. 42]"
 }
 
 export const RAG_CORPUS: RagDocumentSnippet[] = [
   {
-    id: 'reliance-annual-report',
+    id: 'reliance-ar-26',
     symbol: 'RELIANCE.NS',
-    documentTitle: 'Reliance Industries Ltd Annual Report FY26',
-    section: 'MD&A: Digital Services & O2C Segment',
+    documentTitle: 'Reliance Industries FY26 Annual Report',
+    section: 'Management Discussion & Analysis',
     pageOrParagraph: 'Page 54, Paragraph 2',
     publicationDate: '2026-06-15',
-    snippetText: 'Jio platforms observed a 15% ARPU growth following 5G monetization efforts. O2C margins remain resilient at 12.4% despite global crude volatility, supported by high-complexity refining capabilities.',
+    snippetText: 'Digital Services (Jio) margins expanded by 180 bps following full 5G monetization. O2C segment profitability remains resilient despite global refining crack spread volatility.',
     relevanceScore: 98,
-    citationLabel: '[Source: RELIANCE FY26 AR, p. 54]',
+    citationLabel: '[Source: RIL FY26 AR, p. 54]',
   },
   {
-    id: 'tcs-q1-results',
+    id: 'tcs-q1-transcript',
     symbol: 'TCS.NS',
-    documentTitle: 'TCS Q1 FY27 Earnings Release',
-    section: 'Operational Performance & Guidance',
-    pageOrParagraph: 'Press Release, p. 2',
-    publicationDate: '2026-07-10',
-    snippetText: 'TCS reported a strong TCV of $10.2B in Q1, driven by generative AI enterprise transformation deals in the BFSI sector. Operating margins expanded to 24.8% due to efficient resource utilization.',
+    documentTitle: 'TCS Q1 FY27 Earnings Call Transcript',
+    section: 'CEO Remarks & Vertical Analysis',
+    pageOrParagraph: 'Section 2, Paragraph 4',
+    publicationDate: '2026-07-12',
+    snippetText: 'Deal pipeline in BFSI remains strong with a total TCV of ₹10.2B this quarter. Generative AI pilot projects are transitioning to multi-year enterprise production contracts.',
     relevanceScore: 94,
-    citationLabel: '[Source: TCS Q1 FY27 Press Release]',
+    citationLabel: '[Source: TCS Q1 Transcript]',
   },
   {
-    id: 'hdfc-sebi-filing',
+    id: 'hdfc-merger-update',
     symbol: 'HDFCBANK.NS',
-    documentTitle: 'HDFC Bank SEBI Disclosure: Merger Integration Update',
-    section: 'Note 4: Asset Quality & NPA Assessment',
+    documentTitle: 'HDFC Bank Investor Disclosure',
+    section: 'Merger Synergies & Asset Quality',
     pageOrParagraph: 'Page 12, Paragraph 1',
-    publicationDate: '2026-05-22',
-    snippetText: 'Gross NPA stabilized at 1.24% following successful integration of parent assets. Net interest margin (NIM) guidance remains in the 3.8-4.1% range for the next 4 quarters.',
+    publicationDate: '2026-05-20',
+    snippetText: 'Asset quality remains superior with Gross NPA at 1.24%. Synergy benefits from the parent merger are materializing ahead of schedule in operational cost reductions.',
     relevanceScore: 92,
-    citationLabel: '[Source: HDFCBANK SEBI Disclosure, p. 12]',
+    citationLabel: '[Source: HDFCBANK Investor Deck]',
   },
   {
-    id: 'rbp-policy-minutes',
+    id: 'rbi-mpc-minutes',
     symbol: 'MACRO',
     documentTitle: 'RBI Monetary Policy Committee Minutes',
     section: 'Inflation Assessment & Repo Rate Decision',
-    pageOrParagraph: 'Section 2, Paragraph 5',
+    pageOrParagraph: 'Section 4, Paragraph 8',
     publicationDate: '2026-08-15',
-    snippetText: 'The MPC decided to keep the repo rate unchanged at 6.50% while maintaining a focus on withdrawal of accommodation. CPI inflation is projected to average 4.5% for FY27.',
+    snippetText: 'The Committee decided to keep the repo rate unchanged at 6.50% while monitoring food inflation closely. Liquidity conditions in the banking system remain in a slight deficit.',
     relevanceScore: 88,
     citationLabel: '[Source: RBI MPC Minutes Aug 2026]',
   },
@@ -72,15 +72,15 @@ export function queryRagCorpus(symbol: string, queryTerm?: string): RagDocumentS
   // Fallback default citation if symbol is not directly in predefined static index
   return [
     {
-      id: `${symbol}-sebi-filing`,
+      id: `${symbol}-filing`,
       symbol: symbolUpper,
-      documentTitle: `${symbolUpper} SEBI Filing / Annual Report`,
-      section: 'Director\'s Report & MD&A',
-      pageOrParagraph: 'Financial Highlights',
-      publicationDate: '2026-05-01',
-      snippetText: `Company reporting indicates steady growth in Indian operations, stable debt-to-equity ratios, and strategic expansion into Tier-2 and Tier-3 markets.`,
+      documentTitle: `${symbolUpper} Annual Report FY26`,
+      section: 'Management Discussion & Analysis',
+      pageOrParagraph: 'Page 31',
+      publicationDate: '2026-03-01',
+      snippetText: `MCA/SEBI disclosure indicates steady operational revenue growth across Indian domestic verticals, zero net floating-rate debt risk, and ongoing capital allocation into high-margin core products.`,
       relevanceScore: 85,
-      citationLabel: `[Source: ${symbolUpper} SEBI Disclosure]`,
+      citationLabel: `[Source: ${symbolUpper} FY26 AR, p. 31]`,
     },
   ];
 }

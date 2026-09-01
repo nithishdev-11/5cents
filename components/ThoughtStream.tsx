@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, Tooltip } from 'recharts';
+import { PlayCircle, PauseCircle, GitBranch, RefreshCw, Send } from 'lucide-react';
 
 interface ThoughtNode {
   id: string;
@@ -111,9 +112,11 @@ export default function ThoughtStream() {
               : 'border-cyan-400/50 text-cyan-400 hover:bg-cyan-400/10 shadow-[0_0_10px_rgba(34,211,238,0.2)]'
           }`}
         >
-          <span className="material-symbols-outlined text-sm">
-            {isPaused ? 'play_circle' : 'pause_circle'}
-          </span>
+          {isPaused ? (
+            <PlayCircle className="w-4 h-4" />
+          ) : (
+            <PauseCircle className="w-4 h-4" />
+          )}
           {isPaused ? 'RESUME PROCESS' : 'HALT PROCESS'}
         </button>
       </div>
@@ -124,7 +127,7 @@ export default function ThoughtStream() {
         <div className="lg:col-span-5 glass-panel-accent rounded-xl p-5 flex flex-col h-[560px]">
           <div className="flex items-center justify-between mb-4 pb-2 border-b border-cyan-400/20">
             <h2 className="font-sora text-base font-bold text-cyan-400 tracking-wide">THOUGHT STREAM</h2>
-            <span className="material-symbols-outlined text-cyan-400/60 text-lg">account_tree</span>
+            <GitBranch className="w-5 h-5 text-cyan-400/60" />
           </div>
 
           {/* Interactive Agent Input */}
@@ -142,9 +145,9 @@ export default function ThoughtStream() {
               className="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-mono text-xs font-bold px-3 py-2 rounded-lg transition-colors flex items-center gap-1 shrink-0"
             >
               {isAnalyzing ? (
-                <span className="material-symbols-outlined text-sm animate-spin">sync</span>
+                <RefreshCw className="w-4 h-4 animate-spin" />
               ) : (
-                <span className="material-symbols-outlined text-sm">send</span>
+                <Send className="w-4 h-4" />
               )}
             </button>
           </form>

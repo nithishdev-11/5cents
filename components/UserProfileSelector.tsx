@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { UserProfile, UserProfileType, USER_PROFILES, getStoredUserProfile, setStoredUserProfile } from '@/lib/userProfile';
 import { evaluateThreeDimensions } from '@/lib/signalClassifier';
 import { executeQuantAgent, executeSentimentAgent, executeFundamentalRagAgent, executeSynthesisLayer } from '@/lib/multiAgent';
+import { BadgeCheck, ArrowLeftRight, Beaker, X } from 'lucide-react';
 
 interface UserProfileSelectorProps {
   onProfileChange?: (profile: UserProfile) => void;
@@ -19,25 +20,25 @@ export default function UserProfileSelector({ onProfileChange }: UserProfileSele
     if (onProfileChange) onProfileChange(updated);
   };
 
-  // Sample identical stock input (e.g. NVDA at $124.50) to demonstrate profile impact
-  const sampleSignal = evaluateThreeDimensions('NVDA', {
-    currentPrice: 124.50,
-    change: 3.50,
-    percentChange: 2.89,
-    high: 126.00,
-    low: 121.20,
+  // Sample identical stock input (e.g. RELIANCE at ₹2985.40) to demonstrate profile impact
+  const sampleSignal = evaluateThreeDimensions('RELIANCE.NS', {
+    currentPrice: 2985.40,
+    change: 12.50,
+    percentChange: 0.42,
+    high: 3010.00,
+    low: 2970.00,
   });
 
-  const quant = executeQuantAgent(sampleSignal, 124.50);
+  const quant = executeQuantAgent(sampleSignal, 2985.40);
   const sentiment = executeSentimentAgent(sampleSignal);
-  const fundamental = executeFundamentalRagAgent('NVDA');
+  const fundamental = executeFundamentalRagAgent('RELIANCE.NS');
 
   return (
     <div className="glass-panel-accent rounded-xl p-5 space-y-4">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b border-cyan-400/20 pb-3">
         <div>
           <div className="flex items-center gap-2">
-            <span className="material-symbols-outlined text-cyan-400">badge</span>
+            <BadgeCheck className="w-5 h-5 text-cyan-400" />
             <h2 className="font-sora text-sm font-bold text-white uppercase tracking-wide">
               Active User Profile &amp; Risk Parameters
             </h2>
@@ -51,8 +52,8 @@ export default function UserProfileSelector({ onProfileChange }: UserProfileSele
           onClick={() => setShowComparisonModal(true)}
           className="bg-[#151c29] hover:bg-cyan-950/40 border border-cyan-400/30 text-cyan-400 font-mono text-xs px-3 py-1.5 rounded-lg transition-all flex items-center gap-1.5 shadow-[0_0_10px_rgba(34,211,238,0.15)]"
         >
-          <span className="material-symbols-outlined text-sm">compare_arrows</span>
-          <span>COMPARE PROFILES ON NVDA</span>
+          <ArrowLeftRight className="w-4 h-4" />
+          <span>COMPARE PROFILES ON RELIANCE</span>
         </button>
       </div>
 
@@ -110,24 +111,24 @@ export default function UserProfileSelector({ onProfileChange }: UserProfileSele
             <div className="flex justify-between items-center border-b border-cyan-400/30 pb-3">
               <div>
                 <h3 className="font-sora text-lg font-bold text-white tracking-tight flex items-center gap-2">
-                  <span className="material-symbols-outlined text-cyan-400">science</span>
+                  <Beaker className="w-5 h-5 text-cyan-400" />
                   IDENTICAL INPUT PROFILING DEMONSTRATION
                 </h3>
                 <p className="font-mono text-xs text-slate-400 mt-0.5">
-                  Input Stock: NVDA @ $124.50 (+2.89%) • Quant: +62 | Sentiment: +68 | RAG 10-K: +82
+                  Input Stock: RELIANCE @ ₹2985.40 (+0.42%) • Quant: +62 | Sentiment: +68 | RAG 10-K: +82
                 </p>
               </div>
               <button
                 onClick={() => setShowComparisonModal(false)}
                 className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors"
               >
-                <span className="material-symbols-outlined">close</span>
+                <X className="w-5 h-5" />
               </button>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 font-mono text-xs">
               {(Object.values(USER_PROFILES) as UserProfile[]).map((prof) => {
-                const synth = executeSynthesisLayer('NVDA', 124.50, quant, sentiment, fundamental, prof);
+                const synth = executeSynthesisLayer('RELIANCE.NS', 2985.40, quant, sentiment, fundamental, prof);
                 return (
                   <div key={prof.id} className="p-4 rounded-xl bg-[#151c29] border border-slate-800 space-y-2.5">
                     <div className="flex justify-between items-center border-b border-slate-800 pb-2">
@@ -144,7 +145,7 @@ export default function UserProfileSelector({ onProfileChange }: UserProfileSele
                       </div>
                       <div className="bg-[#0c1320] p-2 rounded border border-slate-800">
                         <span className="text-slate-400 block text-[9px]">STOP-LOSS GUARD</span>
-                        <span className="text-red-400 font-bold text-sm">${synth.stopLossPrice}</span>
+                        <span className="text-red-400 font-bold text-sm">₹{synth.stopLossPrice}</span>
                       </div>
                     </div>
 

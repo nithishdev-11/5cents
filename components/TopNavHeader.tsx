@@ -3,15 +3,12 @@
 import { getSession, clearSession } from '@/lib/auth';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { Fingerprint, RefreshCw, LogOut } from 'lucide-react';
 
 interface TopNavHeaderProps {
   onRefresh?: () => void;
   isSyncing?: boolean;
 }
-
-import FingerprintIcon from '@mui/icons-material/Fingerprint';
-import SyncIcon from '@mui/icons-material/Sync';
-import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
 export default function TopNavHeader({ onRefresh, isSyncing }: TopNavHeaderProps) {
   const router = useRouter();
@@ -25,7 +22,7 @@ export default function TopNavHeader({ onRefresh, isSyncing }: TopNavHeaderProps
   return (
     <header className="fixed top-0 left-0 right-0 h-16 bg-[#0c1320]/80 backdrop-blur-xl border-b border-cyan-400/30 shadow-[0_0_15px_rgba(34,211,238,0.15)] flex justify-between items-center px-4 md:px-8 z-50">
       <div className="flex items-center gap-3">
-        <FingerprintIcon className="text-cyan-400 text-3xl drop-shadow-[0_0_8px_rgba(34,211,238,0.8)]" />
+        <Fingerprint className="w-8 h-8 text-cyan-400 drop-shadow-[0_0_8px_rgba(34,211,238,0.8)]" />
         <div className="flex flex-col">
           <span className="font-sora font-bold text-lg text-white tracking-tight leading-none flex items-center gap-1.5">
             5 CENTS
@@ -50,7 +47,7 @@ export default function TopNavHeader({ onRefresh, isSyncing }: TopNavHeaderProps
           title="Refresh Data"
           className="p-2 rounded-lg bg-cyan-950/40 border border-cyan-400/30 text-cyan-400 hover:bg-cyan-900/40 hover:text-white transition-all active:scale-95"
         >
-          <SyncIcon className={`text-xl ${isSyncing ? 'animate-spin' : ''}`} />
+          <RefreshCw className={`w-5 h-5 ${isSyncing ? 'animate-spin' : ''}`} />
         </button>
 
         <button
@@ -58,7 +55,7 @@ export default function TopNavHeader({ onRefresh, isSyncing }: TopNavHeaderProps
           title="Logout"
           className="p-2 rounded-lg bg-red-950/20 border border-red-500/30 text-red-400 hover:bg-red-900/30 hover:text-red-300 transition-all active:scale-95 flex items-center gap-1 text-xs font-mono"
         >
-          <ExitToAppIcon className="text-lg" />
+          <LogOut className="w-4 h-4" />
           <span className="hidden md:inline">EXIT</span>
         </button>
       </div>
