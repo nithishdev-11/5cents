@@ -19,6 +19,10 @@ function pseudoNoise(seed: number, index: number): number {
   return (x - Math.floor(x)) - 0.48;
 }
 
+import TrendingUpIcon from '@mui/icons-material/TrendingUp';
+import TrendingDownIcon from '@mui/icons-material/TrendingDown';
+import SmartToyIcon from '@mui/icons-material/SmartToy';
+
 export default function QuoteCard({
   quote,
   companyName = 'Technology Corp',
@@ -93,9 +97,11 @@ export default function QuoteCard({
                     : 'bg-red-500/10 border border-red-400 text-red-400 pulse-critical'
                 }`}
               >
-                <span className="material-symbols-outlined text-sm">
-                  {signalType === 'BULLISH' ? 'trending_up' : 'trending_down'}
-                </span>
+                {signalType === 'BULLISH' ? (
+                  <TrendingUpIcon className="text-sm" />
+                ) : (
+                  <TrendingDownIcon className="text-sm" />
+                )}
                 {signalType}
               </span>
             </div>
@@ -104,7 +110,7 @@ export default function QuoteCard({
 
           <div className="text-right">
             <div className="font-mono text-xl font-bold text-white">
-              ${quote.currentPrice.toFixed(2)}
+              ₹{quote.currentPrice.toLocaleString('en-IN', { minimumFractionDigits: 2 })}
             </div>
             <div
               className={`font-mono text-xs font-semibold flex items-center justify-end gap-0.5 ${
@@ -133,11 +139,11 @@ export default function QuoteCard({
         {/* Entry target and Horizon */}
         <div className="grid grid-cols-2 gap-2 mb-4">
           <div className="bg-[#151c29] p-2.5 rounded-lg border border-slate-800 flex flex-col justify-between">
-            <span className="font-mono text-[10px] text-slate-400 tracking-wider block mb-0.5">ENTRY TRGT</span>
-            <span className="font-mono text-sm font-semibold text-white">${targetVal.toFixed(2)}</span>
+            <span className="font-mono text-[10px] text-slate-400 tracking-wider block mb-0.5 uppercase">Entry Trgt</span>
+            <span className="font-mono text-sm font-semibold text-white">₹{targetVal.toLocaleString('en-IN', { minimumFractionDigits: 2 })}</span>
           </div>
           <div className="bg-[#151c29] p-2.5 rounded-lg border border-slate-800 flex flex-col justify-between">
-            <span className="font-mono text-[10px] text-slate-400 tracking-wider block mb-0.5">HORIZON</span>
+            <span className="font-mono text-[10px] text-slate-400 tracking-wider block mb-0.5 uppercase">Horizon</span>
             <span className="font-mono text-sm font-semibold text-white">{horizon}</span>
           </div>
         </div>
@@ -145,7 +151,7 @@ export default function QuoteCard({
         {/* Footer Agent info */}
         <div className="border-t border-slate-800/80 pt-3 flex justify-between items-center text-xs text-slate-400 font-mono">
           <div className="flex items-center gap-1.5 text-slate-300">
-            <span className="material-symbols-outlined text-sm text-cyan-400">smart_toy</span>
+            <SmartToyIcon className="text-sm text-cyan-400" />
             <span className="text-[11px] tracking-wider">{agentName}</span>
           </div>
           <div className="text-[11px] text-cyan-400 font-semibold">{confidence}% CONFIDENCE</div>

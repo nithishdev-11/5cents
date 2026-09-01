@@ -4,7 +4,7 @@ const FINNHUB_KEY = process.env.FINNHUB_API_KEY || 'daba559r01qlf7h15mc0daba559r
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
-  const symbol = (searchParams.get('symbol') || 'NVDA').toUpperCase();
+  const symbol = (searchParams.get('symbol') || 'RELIANCE.NS').toUpperCase();
 
   const today = new Date().toISOString().split('T')[0];
   const lastWeek = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];

@@ -3,26 +3,32 @@
 import { useState } from 'react';
 import { ResponsiveContainer, AreaChart, Area, XAxis, YAxis, Tooltip } from 'recharts';
 
+import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
+import HubIcon from '@mui/icons-material/Hub';
+import MemoryIcon from '@mui/icons-material/Memory';
+import BiotechIcon from '@mui/icons-material/Biotech';
+import SolarPowerIcon from '@mui/icons-material/SolarPower';
+
 const NAV_HISTORIES = {
   '1D': [
-    { time: '09:30', value: 2.31 },
-    { time: '11:00', value: 2.34 },
-    { time: '13:00', value: 2.38 },
-    { time: '15:00', value: 2.40 },
-    { time: '16:00', value: 2.42 },
+    { time: '09:30', value: 18.31 },
+    { time: '11:00', value: 18.34 },
+    { time: '13:00', value: 18.38 },
+    { time: '15:00', value: 18.40 },
+    { time: '16:00', value: 18.42 },
   ],
   '1W': [
-    { time: 'Mon', value: 2.15 },
-    { time: 'Tue', value: 2.22 },
-    { time: 'Wed', value: 2.28 },
-    { time: 'Thu', value: 2.35 },
-    { time: 'Fri', value: 2.42 },
+    { time: 'Mon', value: 17.15 },
+    { time: 'Tue', value: 17.22 },
+    { time: 'Wed', value: 17.28 },
+    { time: 'Thu', value: 17.35 },
+    { time: 'Fri', value: 18.42 },
   ],
   '1M': [
-    { time: 'W1', value: 1.95 },
-    { time: 'W2', value: 2.08 },
-    { time: 'W3', value: 2.25 },
-    { time: 'W4', value: 2.42 },
+    { time: 'W1', value: 15.95 },
+    { time: 'W2', value: 16.08 },
+    { time: 'W3', value: 17.25 },
+    { time: 'W4', value: 18.42 },
   ],
 };
 
@@ -46,7 +52,7 @@ export default function PortfolioCard() {
           <div>
             <div className="flex justify-between items-start mb-4">
               <span className="font-mono text-[11px] text-slate-400 tracking-wider">CLEARANCE LEVEL</span>
-              <span className="material-symbols-outlined text-cyan-400 neon-glow text-xl">verified_user</span>
+              <VerifiedUserIcon className="text-cyan-400 neon-glow text-xl" />
             </div>
 
             <div className="text-center my-4">
@@ -88,9 +94,9 @@ export default function PortfolioCard() {
         <div className="glass-panel-accent rounded-xl p-6 md:col-span-8 flex flex-col shadow-[0_4px_24px_rgba(0,0,0,0.4)] min-h-[300px]">
           <div className="flex justify-between items-start mb-4">
             <div>
-              <span className="font-mono text-[11px] text-slate-400 tracking-wider">NET ASSET VALUE</span>
+              <span className="font-mono text-[11px] text-slate-400 tracking-wider uppercase">Net Asset Value</span>
               <div className="flex items-baseline gap-3 mt-1">
-                <h3 className="font-sora font-bold text-3xl text-white tracking-tight">$2.42M</h3>
+                <h3 className="font-sora font-bold text-3xl text-white tracking-tight">₹18.42Cr</h3>
                 <span className="font-mono text-sm font-bold text-cyan-400">+14.2%</span>
               </div>
             </div>
@@ -133,7 +139,7 @@ export default function PortfolioCard() {
                     fontFamily: 'JetBrains Mono',
                     fontSize: '12px'
                   }}
-                  formatter={(val: any) => [`$${val ?? 0}M`, 'NAV']}
+                  formatter={(val: any) => [`₹${val ?? 0}Cr`, 'NAV']}
                 />
                 <Area
                   type="monotone"
@@ -151,8 +157,8 @@ export default function PortfolioCard() {
         {/* Connectivity Score */}
         <div className="glass-panel-accent rounded-xl p-5 md:col-span-6 flex flex-col">
           <div className="flex justify-between items-start mb-4">
-            <span className="font-mono text-[11px] text-slate-400 tracking-wider">CONNECTIVITY SCORE</span>
-            <span className="material-symbols-outlined text-slate-400">hub</span>
+            <span className="font-mono text-[11px] text-slate-400 tracking-wider uppercase">Connectivity Score</span>
+            <HubIcon className="text-slate-400" />
           </div>
 
           <div className="relative w-48 h-48 mx-auto flex items-center justify-center my-2">
@@ -187,7 +193,7 @@ export default function PortfolioCard() {
             <div className="flex items-center justify-between p-3 bg-[#151c29] border border-slate-800 rounded-lg hover:border-cyan-400/30 transition-colors">
               <div className="flex items-center gap-3">
                 <div className="w-8 h-8 rounded bg-cyan-500/10 border border-cyan-400/30 flex items-center justify-center text-cyan-400">
-                  <span className="material-symbols-outlined text-lg">memory</span>
+                  <MemoryIcon className="text-lg" />
                 </div>
                 <div>
                   <h4 className="font-sora text-sm font-semibold text-white leading-none">Quantum Core Assets</h4>
@@ -203,7 +209,7 @@ export default function PortfolioCard() {
             <div className="flex items-center justify-between p-3 bg-[#151c29] border border-slate-800 rounded-lg hover:border-cyan-400/30 transition-colors">
               <div className="flex items-center gap-3">
                 <div className="w-8 h-8 rounded bg-cyan-500/10 border border-cyan-400/30 flex items-center justify-center text-cyan-400">
-                  <span className="material-symbols-outlined text-lg">biotech</span>
+                  <BiotechIcon className="text-lg" />
                 </div>
                 <div>
                   <h4 className="font-sora text-sm font-semibold text-white leading-none">Neural Synth Bio</h4>
@@ -219,7 +225,7 @@ export default function PortfolioCard() {
             <div className="flex items-center justify-between p-3 bg-[#151c29] border border-slate-800 rounded-lg hover:border-cyan-400/30 transition-colors">
               <div className="flex items-center gap-3">
                 <div className="w-8 h-8 rounded bg-red-500/10 border border-red-400/30 flex items-center justify-center text-red-400">
-                  <span className="material-symbols-outlined text-lg">solar_power</span>
+                  <SolarPowerIcon className="text-lg" />
                 </div>
                 <div>
                   <h4 className="font-sora text-sm font-semibold text-white leading-none">Helios Extraction</h4>

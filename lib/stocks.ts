@@ -68,8 +68,14 @@ export async function getQuote(symbol: string): Promise<StockQuote> {
   }
 
   // Fallback defaults if no cache exists yet
-  const defaultPrices: Record<string, number> = { NVDA: 124.50, TSLA: 168.20, AAPL: 185.00 };
-  const basePrice = defaultPrices[sym] || 150.00;
+  const defaultPrices: Record<string, number> = { 
+    'RELIANCE.NS': 2985.40, 
+    'TCS.NS': 4120.15, 
+    'HDFCBANK.NS': 1612.00, 
+    'INFY.NS': 1540.50, 
+    'ICICIBANK.NS': 1120.30 
+  };
+  const basePrice = defaultPrices[sym] || 1500.00;
   return {
     symbol: sym,
     currentPrice: basePrice,

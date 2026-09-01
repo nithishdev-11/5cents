@@ -9,6 +9,7 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 import { useMemo } from 'react';
+import HubIcon from '@mui/icons-material/Hub';
 
 interface SentimentRadarProps {
   dataOverride?: { subject: string; value: number }[];
@@ -33,7 +34,7 @@ export default function SentimentRadar({ dataOverride }: SentimentRadarProps) {
 
       <div className="flex justify-between items-center mb-2 pb-3 border-b border-cyan-400/20">
         <h2 className="font-sora text-base font-bold text-white flex items-center gap-2 tracking-wide uppercase">
-          <span className="material-symbols-outlined text-cyan-400 text-xl">hub</span>
+          <HubIcon className="text-cyan-400" />
           Market Sentiment Matrix
         </h2>
         <div className="flex items-center gap-1.5 bg-[#070b13] px-2.5 py-1 rounded border border-cyan-400/30">

@@ -4,14 +4,16 @@ const FINNHUB_KEY = process.env.FINNHUB_API_KEY || 'daba559r01qlf7h15mc0daba559r
 
 // Default mock fallbacks if Finnhub is rate limited or unavailable
 const MOCK_QUOTES: Record<string, { c: number; d: number; dp: number; h: number; l: number; o: number; pc: number }> = {
-  NVDA: { c: 124.50, d: 4.85, dp: 4.05, h: 126.10, l: 121.20, o: 122.00, pc: 119.65 },
-  TSLA: { c: 168.20, d: -6.40, dp: -3.66, h: 174.50, l: 166.80, o: 173.10, pc: 174.60 },
-  AAPL: { c: 185.00, d: 2.15, dp: 1.18, h: 186.40, l: 183.90, o: 184.10, pc: 182.85 }
+  'RELIANCE.NS': { c: 2985.40, d: 12.50, dp: 0.42, h: 3010.00, l: 2970.00, o: 2980.00, pc: 2972.90 },
+  'TCS.NS': { c: 4120.15, d: -45.30, dp: -1.09, h: 4180.00, l: 4100.00, o: 4175.00, pc: 4165.45 },
+  'HDFCBANK.NS': { c: 1612.00, d: 8.40, dp: 0.52, h: 1625.00, l: 1605.00, o: 1608.00, pc: 1603.60 },
+  'INFY.NS': { c: 1540.50, d: 15.20, dp: 1.00, h: 1555.00, l: 1520.00, o: 1525.00, pc: 1525.30 },
+  'ICICIBANK.NS': { c: 1120.30, d: 5.75, dp: 0.51, h: 1130.00, l: 1112.00, o: 1115.00, pc: 1114.55 }
 };
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
-  const symbol = (searchParams.get('symbol') || 'NVDA').toUpperCase();
+  const symbol = (searchParams.get('symbol') || 'RELIANCE.NS').toUpperCase();
 
   try {
     const res = await fetch(`https://finnhub.io/api/v1/quote?symbol=${symbol}&token=${FINNHUB_KEY}`, {

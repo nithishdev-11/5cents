@@ -10,12 +10,19 @@ import PortfolioCard from '@/components/PortfolioCard';
 import SignalsList from '@/components/SignalsList';
 import ThoughtStream from '@/components/ThoughtStream';
 import ConfigView from '@/components/ConfigView';
+import UserProfileSelector from '@/components/UserProfileSelector';
+import EndToEndDemoRunner from '@/components/EndToEndDemoRunner';
+import DegradedDataSimulator from '@/components/DegradedDataSimulator';
+import PerformanceLogWidget from '@/components/PerformanceLogWidget';
+import ArchitectureSummaryView from '@/components/ArchitectureSummaryView';
 import { getQuote, StockQuote } from '@/lib/stocks';
 
 const WATCHLIST = [
-  { symbol: 'NVDA', name: 'NVIDIA Corporation', confidence: 94.2, target: 124.50, horizon: '3-5 Days', agent: 'AGENT: OMEGA-7', signal: 'BULLISH' as const },
-  { symbol: 'TSLA', name: 'Tesla, Inc.', confidence: 88.5, target: 168.20, horizon: 'Intraday', agent: 'AGENT: VORTEX-3', signal: 'BEARISH' as const },
-  { symbol: 'AAPL', name: 'Apple Inc.', confidence: 76.8, target: 185.00, horizon: '1-2 Wks', agent: 'AGENT: QUANT-9', signal: 'BULLISH' as const },
+  { symbol: 'RELIANCE.NS', name: 'Reliance Industries', confidence: 92.4, target: 3050.00, horizon: '3-5 Days', agent: 'AGENT: OMEGA-7', signal: 'BULLISH' as const },
+  { symbol: 'TCS.NS', name: 'Tata Consultancy Services', confidence: 85.5, target: 4200.20, horizon: 'Intraday', agent: 'AGENT: VORTEX-3', signal: 'BULLISH' as const },
+  { symbol: 'HDFCBANK.NS', name: 'HDFC Bank Ltd', confidence: 78.8, target: 1650.00, horizon: '1-2 Wks', agent: 'AGENT: QUANT-9', signal: 'BEARISH' as const },
+  { symbol: 'INFY.NS', name: 'Infosys Limited', confidence: 81.2, target: 1580.00, horizon: 'Short Term', agent: 'AGENT: OMEGA-7', signal: 'BULLISH' as const },
+  { symbol: 'ICICIBANK.NS', name: 'ICICI Bank Ltd', confidence: 89.4, target: 1150.00, horizon: 'Mid Term', agent: 'AGENT: VORTEX-3', signal: 'BULLISH' as const },
 ];
 
 export default function DashboardPage() {
@@ -169,11 +176,11 @@ export default function DashboardPage() {
                     <div className="space-y-3 font-mono text-xs">
                       <div className="flex justify-between items-center">
                         <span className="text-slate-400">NET LIQUIDITY</span>
-                        <span className="text-cyan-400 font-bold text-sm">$4.2M</span>
+                        <span className="text-cyan-400 font-bold text-sm">₹35.2Cr</span>
                       </div>
                       <div className="flex justify-between items-center">
                         <span className="text-slate-400">24H VOL</span>
-                        <span className="text-cyan-400 font-bold text-sm">$18.7M</span>
+                        <span className="text-cyan-400 font-bold text-sm">₹128.7Cr</span>
                       </div>
                       <div className="flex justify-between items-center pt-2 border-t border-slate-800">
                         <span className="text-slate-400">RISK EXPOSURE</span>
@@ -187,22 +194,29 @@ export default function DashboardPage() {
                 </aside>
               </div>
 
+              {/* User Profiling & Strategy Alignment */}
+              <UserProfileSelector />
+
               {/* Portfolio Insights Section */}
               <PortfolioCard />
+
+              {/* System Performance & Telemetry */}
+              <PerformanceLogWidget />
             </div>
           )}
 
-          {/* TAB 2: SIGNALS (Market Sense - NVDA, TSLA, AAPL cards matching Image 1.png) */}
+          {/* TAB 2: SIGNALS (Market Sense - Indian stock cards) */}
           {activeTab === 'signals' && (
             <div className="space-y-6 animate-fadeIn">
+              <UserProfileSelector />
               <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-cyan-400/20 pb-4">
                 <div>
                   <h1 className="font-sora text-3xl font-extrabold text-white tracking-tight uppercase">
-                    MARKET SENSE
+                    DALAL STREET SENSE
                   </h1>
                   <p className="font-sans text-xs text-slate-400 mt-1 flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
-                    Live Signal Stream Active
+                    NSE/BSE Signal Stream Active
                   </p>
                 </div>
 
@@ -246,6 +260,8 @@ export default function DashboardPage() {
                   );
                 })}
               </div>
+
+              <SignalsList />
             </div>
           )}
 
@@ -256,7 +272,24 @@ export default function DashboardPage() {
             </div>
           )}
 
-          {/* TAB 4: CONFIG (System configuration & logout) */}
+          {/* TAB 4: DEMO (End-to-End Multi-Agent Pipeline & Degradation Simulator) */}
+          {activeTab === 'demo' && (
+            <div className="space-y-6 animate-fadeIn">
+              <UserProfileSelector />
+              <EndToEndDemoRunner />
+              <DegradedDataSimulator />
+              <PerformanceLogWidget />
+            </div>
+          )}
+
+          {/* TAB 5: ARCH (System Architecture Overview & Requirement Mapping) */}
+          {activeTab === 'arch' && (
+            <div className="animate-fadeIn">
+              <ArchitectureSummaryView />
+            </div>
+          )}
+
+          {/* TAB 6: CONFIG (System configuration & logout) */}
           {activeTab === 'config' && (
             <div className="animate-fadeIn">
               <ConfigView />
