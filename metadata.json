@@ -1,0 +1,6 @@
+{
+  "name": "5 Cents - Apex Intelligence",
+  "description": "Mobile-first PWA dark-themed financial intelligence dashboard with live Finnhub market data, agent reasoning signals, sentiment topology, and offline caching.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
